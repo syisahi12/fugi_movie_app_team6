@@ -30,7 +30,7 @@ class Dashboard extends StatelessWidget {
           child: InkWell(
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => const MovieDetail(),
+                builder: (context) => MovieDetail(movies),
               ));
             },
             child: Image.asset(movies.imageUrl, fit: BoxFit.cover),
@@ -41,43 +41,51 @@ class Dashboard extends StatelessWidget {
           child: SizedBox(
             height: 120,
             width: 95,
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text(
-                'Title:\n${movies.title}',
-                style: const TextStyle(
-                    fontFamily: 'Poppins',
-                    fontSize: 12,
-                    fontWeight: FontWeight.w400,
-                    color: kFouthColor),
-              ),
-              const SizedBox(height: 5),
-              Text(
-                'Release Date:\n${movies.releaseDate}',
-                style: const TextStyle(
-                    fontFamily: 'Poppins',
-                    fontSize: 12,
-                    fontWeight: FontWeight.w400,
-                    color: kFouthColor),
-              ),
-              const SizedBox(height: 5),
-              const Text(
-                'Average Rating:',
-                style: TextStyle(
-                    fontFamily: 'Poppins',
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
-                    color: kFouthColor),
-              ),
-              Text(
-                movies.avgRating,
-                style: const TextStyle(
-                    fontFamily: 'Poppins',
-                    fontSize: 12,
-                    fontWeight: FontWeight.w400,
-                    color: kFouthColor),
-              ),
-            ]),
+            child: InkWell(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => MovieDetail(movies),
+                ));
+              },
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Title:\n${movies.title}',
+                      style: const TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                          color: kFouthColor),
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      'Release Date:\n${movies.releaseDate}',
+                      style: const TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                          color: kFouthColor),
+                    ),
+                    const SizedBox(height: 5),
+                    const Text(
+                      'Average Rating:',
+                      style: TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                          color: kFouthColor),
+                    ),
+                    Text(
+                      movies.avgRating,
+                      style: const TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                          color: kFouthColor),
+                    ),
+                  ]),
+            ),
           ),
         ),
         SizedBox(
@@ -91,7 +99,8 @@ class Dashboard extends StatelessWidget {
             movies.isFavorite == true
                 ? Image.asset('assets/images/vector_star.png',
                     color: kPrimaryColor)
-                : Image.asset('assets/images/vector_star.png', color: kFouthColor)
+                : Image.asset('assets/images/vector_star.png',
+                    color: kFouthColor)
           ]),
         ),
       ]),
