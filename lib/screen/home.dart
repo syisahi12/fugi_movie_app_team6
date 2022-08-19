@@ -242,6 +242,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 ),
               ],
             ),
+            const SizedBox(height: 100),
             Align(
                 alignment: Alignment.bottomCenter,
                 child: Padding(
