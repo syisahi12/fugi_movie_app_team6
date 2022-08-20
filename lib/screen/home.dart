@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fugi_movie_app_team6/constant/colors.dart';
+import 'package:flutter/foundation.dart';
 
 import 'dashboard.dart';
 
@@ -13,13 +14,17 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   TabController? _tabController;
-  int? isCategories;
+  int isCategories = 0;
 
   @override
   void initState() {
     super.initState();
-    isCategories = 0;
     _tabController = TabController(length: 4, vsync: this);
+    _tabController!.addListener(() {
+      setState(() {
+        isCategories = _tabController!.index;
+      });
+    });
   }
 
   @override
