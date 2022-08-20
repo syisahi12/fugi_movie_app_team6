@@ -3,6 +3,7 @@ import 'package:fugi_movie_app_team6/constant/colors.dart';
 
 import 'dashboard.dart';
 
+/// ini coba watch list
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
