@@ -13,6 +13,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   TabController? _tabController;
   int? isCategories;
+  double _valueRating = 0.0;
 
   @override
   void initState() {
@@ -230,9 +231,10 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 Padding(
                   padding: const EdgeInsets.only(left: 29, right: 29),
                   child: SizedBox(
-                    height: 320,
+                    height: 300,
                     width: width - 58,
-                    child: TabBarView(controller: _tabController, children: const [
+                    child:
+                        TabBarView(controller: _tabController, children: const [
                       Dashboard(),
                       Dashboard(),
                       Dashboard(),
@@ -240,14 +242,44 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     ]),
                   ),
                 ),
+                Row(
+                  children: [
+                    const Spacer(),
+                    Text((_valueRating.round() * 0.1).toStringAsFixed(1),
+                        style: const TextStyle(
+                            fontSize: 12,
+                            color: kFouthColor,
+                            fontFamily: 'Poppins',
+                            fontWeight: FontWeight.w500)),
+                    SizedBox(
+                      width: 300,
+                      child: Slider(
+                        activeColor: kFouthColor,
+                        thumbColor: kPrimaryColor,
+                        inactiveColor: kFouthColor,
+                        value: _valueRating,
+                        min: 0,
+                        max: 100,
+                        divisions: 100,
+                        label:
+                            "Rating: ${(_valueRating.round() * 0.1).toStringAsFixed(1)}",
+                        onChanged: (double value) {
+                          setState(() {
+                            _valueRating = value;
+                          });
+                        },
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
-            const SizedBox(height: 100),
+            const SizedBox(height: 10),
             Align(
                 alignment: Alignment.bottomCenter,
                 child: Padding(
                   padding:
-                      const EdgeInsets.only(left: 29, right: 29, bottom: 31),
+                      const EdgeInsets.only(left: 29, right: 29, bottom: 20),
                   child: SizedBox(
                     height: 42,
                     width: width - 59,
@@ -270,7 +302,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                             height: 42,
                             width: 134,
                             child: Padding(
-                              padding: const EdgeInsets.only(left: 10, right: 10),
+                              padding:
+                                  const EdgeInsets.only(left: 10, right: 10),
                               child: Row(children: [
                                 const Text(
                                   'Watch List',

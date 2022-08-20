@@ -93,14 +93,16 @@ class Dashboard extends StatelessWidget {
           width: 30,
           child: Column(children: [
             movies.isFavorite == true
-                ? Image.asset('assets/images/vector.png', color: kPrimaryColor)
-                : Image.asset('assets/images/vector.png', color: kFouthColor),
+                ? Image.asset('assets/images/vector.png',
+                    color: kPrimaryColor, width: 22, height: 22)
+                : Image.asset('assets/images/vector.png',
+                    color: kFouthColor, width: 22, height: 22),
             const SizedBox(height: 19),
             movies.isFavorite == true
                 ? Image.asset('assets/images/vector_star.png',
-                    color: kPrimaryColor)
+                    color: kPrimaryColor, width: 22, height: 22)
                 : Image.asset('assets/images/vector_star.png',
-                    color: kFouthColor)
+                    color: kFouthColor, width: 22, height: 22)
           ]),
         ),
       ]),
