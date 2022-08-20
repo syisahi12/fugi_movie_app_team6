@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fugi_movie_app_team6/constant/colors.dart';
 import 'package:fugi_movie_app_team6/data/movies.dart';
-import 'package:fugi_movie_app_team6/screen/movie_detail.dart';
+import 'package:fugi_movie_app_team6/screen/detail/movie_detail.dart';
 
 class Dashboard extends StatelessWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -36,7 +36,7 @@ class Dashboard extends StatelessWidget {
             child: Image.asset(movies.imageUrl, fit: BoxFit.cover),
           ),
         ),
-        SizedBox(width: 22),
+        const SizedBox(width: 22),
         Expanded(
           child: SizedBox(
             height: 120,
@@ -92,17 +92,14 @@ class Dashboard extends StatelessWidget {
           height: 120,
           width: 30,
           child: Column(children: [
-            movies.isFavorite == true
-                ? Image.asset('assets/images/vector.png',
-                    color: kPrimaryColor, width: 22, height: 22)
-                : Image.asset('assets/images/vector.png',
-                    color: kFouthColor, width: 22, height: 22),
+        movies.isFavorite == true
+                ? const Icon(Icons.bookmark, color: kPrimaryColor)
+                : const Icon(Icons.bookmark, color: kFouthColor),
             const SizedBox(height: 19),
             movies.isFavorite == true
-                ? Image.asset('assets/images/vector_star.png',
-                    color: kPrimaryColor, width: 22, height: 22)
-                : Image.asset('assets/images/vector_star.png',
-                    color: kFouthColor, width: 22, height: 22)
+                ? const Icon(Icons.star_outlined, color: kPrimaryColor)
+                : const Icon(Icons.star_outlined, color: kFouthColor)
+
           ]),
         ),
       ]),
