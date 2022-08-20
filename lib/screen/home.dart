@@ -272,8 +272,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                             child: Padding(
                               padding:
                                   const EdgeInsets.only(left: 10, right: 10),
-                              child: Row(children: [
-                                const Text(
+                              child: Row(children: const [
+                                Text(
                                   'Watch List',
                                   style: TextStyle(
                                       fontSize: 14,
@@ -281,7 +281,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                       fontFamily: 'Poppins',
                                       fontWeight: FontWeight.w600),
                                 ),
-                                const Spacer(),
+                                Spacer(),
                                 Icon(Icons.bookmark)
                               ]),
                             ),
