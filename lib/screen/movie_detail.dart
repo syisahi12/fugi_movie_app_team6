@@ -30,9 +30,9 @@ class _MovieDetailState extends State<MovieDetail>
         backgroundColor: kBackground,
         body: Column(
           children: [
-            buildHeader(context),
-            const SizedBox(
-              height: 20,
+            Container(
+              margin: EdgeInsets.only(bottom: 75),
+              child: buildHeader(context),
             ),
             SizedBox(
                 height: 50,
@@ -50,7 +50,7 @@ class _MovieDetailState extends State<MovieDetail>
               ),
             ),
             SizedBox(
-              height: 400,
+              height: 350,
               child: TabBarView(
                 controller: _tabController,
                 children: [
@@ -113,6 +113,7 @@ class _MovieDetailState extends State<MovieDetail>
 
 Widget buildHeader(BuildContext context) {
   return Stack(
+    clipBehavior: Clip.none,
     children: [
       Container(
         decoration: const BoxDecoration(
