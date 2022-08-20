@@ -314,7 +314,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                       fontWeight: FontWeight.w600),
                                 ),
                                 const Spacer(),
-                                Image.asset('assets/images/vector.png')
+                                Image.asset('assets/images/vector.png', height: 22)
                               ]),
                             ),
                             decoration: BoxDecoration(
