@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fugi_movie_app_team6/constant/colors.dart';
 import 'package:fugi_movie_app_team6/data/movies.dart';
+import 'package:fugi_movie_app_team6/screen/detail/widgets/buildBottom.dart';
 
 class MovieDetail extends StatefulWidget {
   final List reviewList = List.generate(5, (index) {
@@ -31,7 +32,7 @@ class _MovieDetailState extends State<MovieDetail>
         body: Column(
           children: [
             Container(
-              margin: EdgeInsets.only(bottom: 75),
+              margin: const EdgeInsets.only(bottom: 75),
               child: buildHeader(context),
             ),
             SizedBox(
@@ -105,7 +106,7 @@ class _MovieDetailState extends State<MovieDetail>
               ),
             ),
             const Spacer(),
-            buildBottom(context),
+            BuildBottom(),
           ],
         ));
   }
@@ -156,68 +157,6 @@ Widget buildHeader(BuildContext context) {
 Widget buildTabBar(BuildContext context) {
   return Column(
     children: const [],
-  );
-}
-
-Widget buildBottom(BuildContext context) {
-  return Padding(
-    padding: const EdgeInsets.only(left: 29, right: 32, bottom: 31),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        GestureDetector(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: Container(
-            height: 42,
-            width: 105,
-            decoration: BoxDecoration(
-                color: kSecondaryColor,
-                borderRadius: BorderRadius.circular(20)),
-            child: Padding(
-              padding: const EdgeInsets.only(left: 13, right: 16),
-              child: Row(
-                children: const [
-                  Icon(
-                    Icons.arrow_back,
-                    color: Colors.white,
-                  ),
-                  Spacer(),
-                  Text(
-                    'Back',
-                    style: TextStyle(
-                        fontSize: 14,
-                        color: kFouthColor,
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w400),
-                  )
-                ],
-              ),
-            ),
-          ),
-        ),
-        const Spacer(),
-        GestureDetector(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: Container(
-            height: 42,
-            width: 42,
-            decoration: BoxDecoration(
-                color: kSecondaryColor,
-                borderRadius: BorderRadius.circular(20)),
-            child: const Center(
-              child: Icon(
-                Icons.bookmark,
-                color: Colors.white,
-              ),
-            ),
-          ),
-        ),
-      ],
-    ),
   );
 }
 

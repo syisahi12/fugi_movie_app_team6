@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fugi_movie_app_team6/constant/colors.dart';
 import 'package:fugi_movie_app_team6/data/movies.dart';
-import 'package:fugi_movie_app_team6/screen/movie_detail.dart';
+import 'package:fugi_movie_app_team6/screen/detail/movie_detail.dart';
 
 class Dashboard extends StatelessWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -93,14 +93,12 @@ class Dashboard extends StatelessWidget {
           width: 30,
           child: Column(children: [
             movies.isFavorite == true
-                ? Image.asset('assets/images/vector.png', color: kPrimaryColor)
-                : Image.asset('assets/images/vector.png', color: kFouthColor),
+                ? Icon(Icons.bookmark, color: kPrimaryColor)
+                : Icon(Icons.bookmark, color: kFouthColor),
             const SizedBox(height: 19),
             movies.isFavorite == true
-                ? Image.asset('assets/images/vector_star.png',
-                    color: kPrimaryColor)
-                : Image.asset('assets/images/vector_star.png',
-                    color: kFouthColor)
+                ? Icon(Icons.star_outlined, color: kPrimaryColor)
+                : Icon(Icons.star_outlined, color: kFouthColor)
           ]),
         ),
       ]),
