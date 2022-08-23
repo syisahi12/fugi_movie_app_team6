@@ -64,7 +64,7 @@ class _BuildBottomState extends State<BuildBottom> {
                   borderRadius: BorderRadius.circular(20)),
               child: Center(
                 child: Icon(
-                  click ? Icons.bookmark_add : Icons.bookmark,
+                  click ? Icons.bookmark : Icons.bookmark_add,
                   color: click ? kPrimaryColor : Colors.white,
                 ),
               ),
