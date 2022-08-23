@@ -36,7 +36,7 @@ class Dashboard extends StatelessWidget {
             child: Image.asset(movies.imageUrl, fit: BoxFit.cover),
           ),
         ),
-        SizedBox(width: 22),
+        const SizedBox(width: 22),
         Expanded(
           child: SizedBox(
             height: 120,
@@ -92,13 +92,14 @@ class Dashboard extends StatelessWidget {
           height: 120,
           width: 30,
           child: Column(children: [
-            movies.isFavorite == true
-                ? Icon(Icons.bookmark, color: kPrimaryColor)
-                : Icon(Icons.bookmark, color: kFouthColor),
+        movies.isFavorite == true
+                ? const Icon(Icons.bookmark, color: kPrimaryColor)
+                : const Icon(Icons.bookmark, color: kFouthColor),
             const SizedBox(height: 19),
             movies.isFavorite == true
-                ? Icon(Icons.star_outlined, color: kPrimaryColor)
-                : Icon(Icons.star_outlined, color: kFouthColor)
+                ? const Icon(Icons.star_outlined, color: kPrimaryColor)
+                : const Icon(Icons.star_outlined, color: kFouthColor)
+
           ]),
         ),
       ]),
