@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fugi_movie_app_team6/constant/colors.dart';
+import 'package:fugi_movie_app_team6/screen/list_movie.dart';
+import 'package:fugi_movie_app_team6/screen/load_more.dart';
 
 import 'dashboard.dart';
 
@@ -15,6 +17,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   TabController? _tabController;
   int? isCategories;
   double _valueRating = 0.0;
+  TextEditingController searchControlller = TextEditingController();
 
   @override
   void initState() {
@@ -74,9 +77,10 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                             children: [
                               Container(
                                 width: width - 123,
-                                child: const Padding(
+                                child: Padding(
                                   padding: EdgeInsets.only(left: 20, right: 20),
                                   child: TextField(
+                                    controller: searchControlller,
                                     decoration: InputDecoration(
                                         hintText: 'Search Here ...',
                                         hintStyle:
@@ -97,7 +101,13 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                               Container(
                                 width: 42,
                                 child: IconButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (context) => ListMovie(
+                                                  title:
+                                                      searchControlller.text)));
+                                    },
                                     icon: const Icon(
                                       Icons.search,
                                       color: kFouthColor,
@@ -287,7 +297,11 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     child: Row(
                       children: [
                         TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => LoadMore(),
+                              ));
+                            },
                             child: const Text(
                               'Load More',
                               style: TextStyle(
@@ -305,7 +319,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                             child: Padding(
                               padding:
                                   const EdgeInsets.only(left: 10, right: 10),
-                              child: Row(children:  const [
+                              child: Row(children: const [
                                 Text(
                                   'Watch List',
                                   style: TextStyle(
