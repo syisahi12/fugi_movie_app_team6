@@ -83,6 +83,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                     controller: searchControlller,
                                     decoration: InputDecoration(
                                         hintText: 'Search Here ...',
+                                        border: InputBorder.none,
                                         hintStyle:
                                             TextStyle(color: kFouthColor)),
                                     style: TextStyle(
