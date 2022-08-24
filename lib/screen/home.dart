@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:fugi_movie_app_team6/constant/colors.dart';
-import 'package:flutter/foundation.dart';
-
 import 'dashboard.dart';
 
 /// ini coba watch list
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
-
   @override
   State<Home> createState() => _HomeState();
 }
@@ -15,17 +12,11 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   TabController? _tabController;
   int? isCategories;
-  double _valueRating = 0.0;
-
   @override
   void initState() {
     super.initState();
+    isCategories = 0;
     _tabController = TabController(length: 4, vsync: this);
-    _tabController!.addListener(() {
-      setState(() {
-        isCategories = _tabController!.index;
-      });
-    });
   }
 
   @override
@@ -255,88 +246,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                             Dashboard(),
                           ]),
                     ),
-                  ],
-                ),
-                const SizedBox(height: 31),
-                Padding(
-                  padding: const EdgeInsets.only(left: 29, right: 29),
-                  child: SizedBox(
-                    height: 300,
-                    width: width - 58,
-                    child:
-                        TabBarView(controller: _tabController, children: const [
-                      Dashboard(),
-                      Dashboard(),
-                      Dashboard(),
-                      Dashboard(),
-                    ]),
-                  ),
-                ),
-                Row(
-                  children: [
-                    const Spacer(),
-                    Text((_valueRating.round() * 0.1).toStringAsFixed(1),
-                        style: const TextStyle(
-                            fontSize: 12,
-                            color: kFouthColor,
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w500)),
-                    SizedBox(
-                      width: 300,
-                      child: Slider(
-                        activeColor: kFouthColor,
-                        thumbColor: kPrimaryColor,
-                        inactiveColor: kFouthColor,
-                        value: _valueRating,
-                        min: 0,
-                        max: 100,
-                        divisions: 100,
-                        label:
-                            "Rating: ${(_valueRating.round() * 0.1).toStringAsFixed(1)}",
-                        onChanged: (double value) {
-                          setState(() {
-                            _valueRating = value;
-                          });
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            const SizedBox(height: 10),
-            Align(
-                alignment: Alignment.bottomCenter,
-                child: Padding(
-                  padding:
-                      const EdgeInsets.only(left: 29, right: 29, bottom: 20),
-                  child: SizedBox(
-                    height: 42,
-                    width: width - 59,
-                    child: Row(
-                      children: [
-                        TextButton(
-                            onPressed: () {},
-                            child: const Text(
-                              'Load More',
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  color: kFouthColor,
-                                  fontFamily: 'Poppins',
-                                  fontWeight: FontWeight.w600),
-                            )),
-                        const Spacer(),
-                        InkWell(
-                          onTap: () {},
-                          child: Container(
-                            height: 42,
-                            width: 134,
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 10, right: 10),
-                              child: Row(children:  const [
-                                Text(
-                                  'Watch List',
                   ),
                 ],
               ),
@@ -356,7 +265,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                 onPressed: () {},
                                 child: const Text(
                                   'Load More',
-
                                   style: TextStyle(
                                       fontSize: 18,
                                       color: kFouthColor,
