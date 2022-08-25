@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fugi_movie_app_team6/constant/colors.dart';
-import 'package:fugi_movie_app_team6/data/movies.dart';
 import 'package:fugi_movie_app_team6/models/movie_model.dart';
-import 'package:fugi_movie_app_team6/provider/movie_provider2.dart';
-import 'package:fugi_movie_app_team6/screen/detail/movie_detail.dart';
+import 'package:intl/intl.dart';
+
+import '../provider/movie_provider.dart';
 
 class ListMovie extends ConsumerWidget {
   final String title;
@@ -13,11 +13,11 @@ class ListMovie extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final _data = ref.watch(movieProvider3);
-    double width = MediaQuery.of(context).size.width;
+    final _data = ref.watch(movieProvide(title));
     return Scaffold(
       backgroundColor: kBackground,
       appBar: AppBar(
+        backgroundColor: kBackground,
         title: Text(title),
       ),
       body: _data.when(
@@ -26,8 +26,8 @@ class ListMovie extends ConsumerWidget {
             children: [
               ..._data.map((e) => ListView(
                 shrinkWrap: true,
-                    children: [_buildCard(e, context)],
-                  ))
+                children: [_buildCard(e, context)],
+              ))
             ],
           );
         },
@@ -40,6 +40,8 @@ class ListMovie extends ConsumerWidget {
   }
 
   Widget _buildCard(MovieModel movieModel, context) {
+    DateFormat dateFormat = DateFormat("yyyy-MM-dd HH:mm:ss");
+    double width = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.only(top: 18, bottom: 9),
       child: Row(children: [
@@ -48,9 +50,9 @@ class ListMovie extends ConsumerWidget {
           width: 95,
           child: InkWell(
             onTap: () {
-            //   Navigator.of(context).push(MaterialPageRoute(
-            //     builder: (context) => MovieDetail(movies),
-            //   ));
+              //   Navigator.of(context).push(MaterialPageRoute(
+              //     builder: (context) => MovieDetail(movies),
+              //   ));
             },
             // child: Image.asset(movies.imageUrl, fit: BoxFit.cover),
           ),
@@ -79,7 +81,7 @@ class ListMovie extends ConsumerWidget {
                     ),
                     const SizedBox(height: 5),
                     Text(
-                      'Release Date:}',
+                      'Release Date:\n${ movieModel.releaseDate}',
                       style: const TextStyle(
                           fontFamily: 'Poppins',
                           fontSize: 12,
@@ -87,20 +89,12 @@ class ListMovie extends ConsumerWidget {
                           color: kFouthColor),
                     ),
                     const SizedBox(height: 5),
-                    const Text(
-                      'Average Rating:',
+                     Text(
+                      'Average Rating:\n${ movieModel.voteAverage.toString()}',
                       style: TextStyle(
                           fontFamily: 'Poppins',
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
-                          color: kFouthColor),
-                    ),
-                    Text(
-                      'movies.avgRating',
-                      style: const TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
                           color: kFouthColor),
                     ),
                   ]),

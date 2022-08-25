@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fugi_movie_app_team6/constant/colors.dart';
 import 'package:fugi_movie_app_team6/screen/list_movie.dart';
-import 'package:fugi_movie_app_team6/screen/load_more.dart';
 
 import 'dashboard.dart';
 
@@ -18,10 +17,18 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   int? isCategories;
   double _valueRating = 0.0;
   TextEditingController searchControlller = TextEditingController();
+  String searchMovie = '';
+
+  void resetSearch() {
+    setState(() {
+    });
+    searchControlller.clear();
+  }
 
   @override
   void initState() {
     super.initState();
+    resetSearch();
     isCategories = 0;
     _tabController = TabController(length: 4, vsync: this);
   }
@@ -81,6 +88,9 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                   padding: EdgeInsets.only(left: 20, right: 20),
                                   child: TextField(
                                     controller: searchControlller,
+                                    onChanged: (value) {
+                                      searchMovie = value;
+                                    },
                                     decoration: InputDecoration(
                                         hintText: 'Search Here ...',
                                         border: InputBorder.none,
@@ -103,11 +113,11 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                 width: 42,
                                 child: IconButton(
                                     onPressed: () {
+                                      resetSearch();
                                       Navigator.of(context).push(
                                           MaterialPageRoute(
                                               builder: (context) => ListMovie(
-                                                  title:
-                                                      searchControlller.text)));
+                                                  title: searchMovie)));
                                     },
                                     icon: const Icon(
                                       Icons.search,
@@ -300,7 +310,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                         TextButton(
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => LoadMore(),
+                                builder: (context) =>
+                                    ListMovie(title: searchControlller.text),
                               ));
                             },
                             child: const Text(

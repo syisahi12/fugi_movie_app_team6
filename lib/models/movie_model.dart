@@ -1,6 +1,9 @@
 import 'package:fugi_movie_app_team6/constant/utils.dart';
+import 'package:intl/intl.dart';
 
 class MovieModel {
+  DateFormat dateFormat = DateFormat("yyyy-MM-dd");
+
   final bool adult;
   final String backdropPath;
   // final List<int> genreIds;
@@ -10,10 +13,10 @@ class MovieModel {
   final String overview;
   final double popularity;
   final String posterPath;
-  // final DateTime releaseDate;
+  final String releaseDate;
   final String title;
   final bool video;
-  // final double voteAverage;
+  final num voteAverage;
   // final int voteCount;
 
   MovieModel({
@@ -26,10 +29,10 @@ class MovieModel {
     required this.overview,
     required this.popularity,
     required this.posterPath,
-    // required this.releaseDate,
+    required this.releaseDate,
     required this.title,
     required this.video,
-    // required this.voteAverage,
+    required this.voteAverage,
     // required this.voteCount,
   });
 
@@ -48,10 +51,10 @@ class MovieModel {
       overview: json['overview'] ?? '',
       popularity: json['popularity'] ?? '',
       posterPath: json['poster_path'] ?? '',
-      // releaseDate: json['releaseDate'] ?? '',
+      releaseDate: json['release_date'] ?? '',
       title: json['title'] ?? '',
       video: json['video'] ?? '',
-      // voteAverage: json['voteAverage'] ?? '',
+      voteAverage: json['vote_average']  ?? 0,
       // voteCount: json['voteCount'] ?? '',
     );
   }
