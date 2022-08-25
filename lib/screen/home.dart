@@ -95,7 +95,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                         hintText: 'Search Here ...',
                                         border: InputBorder.none,
                                         hintStyle:
-                                            TextStyle(color: kFouthColor)),
+                                        TextStyle(color: kFouthColor)),
                                     style: TextStyle(
                                         fontFamily: 'Poppins',
                                         color: Colors.white,
@@ -173,9 +173,9 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                               'Top Rated',
                               style: _tabController!.index == 0
                                   ? const TextStyle(
-                                      color: kBackground, fontSize: 12)
+                                  color: kBackground, fontSize: 12)
                                   : const TextStyle(
-                                      color: kFouthColor, fontSize: 12),
+                                  color: kFouthColor, fontSize: 12),
                             ),
                           ),
                         ),
@@ -195,9 +195,9 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                               'Popular',
                               style: _tabController!.index == 1
                                   ? const TextStyle(
-                                      color: kBackground, fontSize: 12)
+                                  color: kBackground, fontSize: 12)
                                   : const TextStyle(
-                                      color: kFouthColor, fontSize: 12),
+                                  color: kFouthColor, fontSize: 12),
                             ),
                           ),
                         ),
@@ -217,9 +217,9 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                               'Action',
                               style: _tabController!.index == 2
                                   ? const TextStyle(
-                                      color: kBackground, fontSize: 12)
+                                  color: kBackground, fontSize: 12)
                                   : const TextStyle(
-                                      color: kFouthColor, fontSize: 12),
+                                  color: kFouthColor, fontSize: 12),
                             ),
                           ),
                         ),
@@ -239,9 +239,9 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                               'Action',
                               style: _tabController!.index == 3
                                   ? const TextStyle(
-                                      color: kBackground, fontSize: 12)
+                                  color: kBackground, fontSize: 12)
                                   : const TextStyle(
-                                      color: kFouthColor, fontSize: 12),
+                                  color: kFouthColor, fontSize: 12),
                             ),
                           ),
                         ),
@@ -256,7 +256,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     height: 300,
                     width: width - 58,
                     child:
-                        TabBarView(controller: _tabController, children: const [
+                    TabBarView(controller: _tabController, children: const [
                       Dashboard(),
                       Dashboard(),
                       Dashboard(),
@@ -284,7 +284,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                         max: 100,
                         divisions: 100,
                         label:
-                            "Rating: ${(_valueRating.round() * 0.1).toStringAsFixed(1)}",
+                        "Rating: ${(_valueRating.round() * 0.1).toStringAsFixed(1)}",
                         onChanged: (double value) {
                           setState(() {
                             _valueRating = value;
@@ -301,7 +301,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 alignment: Alignment.bottomCenter,
                 child: Padding(
                   padding:
-                      const EdgeInsets.only(left: 29, right: 29, bottom: 20),
+                  const EdgeInsets.only(left: 29, right: 29, bottom: 20),
                   child: SizedBox(
                     height: 42,
                     width: width - 59,
@@ -330,7 +330,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                             width: 134,
                             child: Padding(
                               padding:
-                                  const EdgeInsets.only(left: 10, right: 10),
+                              const EdgeInsets.only(left: 10, right: 10),
                               child: Row(children: const [
                                 Text(
                                   'Watch List',
