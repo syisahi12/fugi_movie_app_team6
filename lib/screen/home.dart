@@ -116,11 +116,13 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                   width: 42,
                                   child: IconButton(
                                       onPressed: () {
-                                        resetSearch();
-                                        Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (context) => ListMovie(
-                                                    title: searchMovie)));
+                                        if(searchMovie.isNotEmpty) {
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (context) => ListMovie(
+                                                      title: searchMovie)));
+                                          resetSearch();
+                                        }
                                       },
                                       icon: const Icon(
                                         Icons.search,

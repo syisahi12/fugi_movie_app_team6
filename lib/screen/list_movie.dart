@@ -22,6 +22,7 @@ class ListMovie extends ConsumerWidget {
       body: _data.when(
         data: (_data) {
           return ListView(
+            shrinkWrap: true,
             children: [
               ..._data.map((e) => ListView(
                 shrinkWrap: true,
@@ -42,30 +43,21 @@ class ListMovie extends ConsumerWidget {
     double width = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.only(top: 18, bottom: 9),
-      child: Row(children: [
-        SizedBox(
-          height: 120,
-          width: 95,
-          child: InkWell(
-            onTap: () {
-              //   Navigator.of(context).push(MaterialPageRoute(
-              //     builder: (context) => MovieDetail(movies),
-              //   ));
-            },
-            // child: Image.asset(movies.imageUrl, fit: BoxFit.cover),
-          ),
-        ),
-        const SizedBox(width: 22),
-        Expanded(
-          child: SizedBox(
+      child: InkWell(
+        onTap: () {
+
+        },
+        child: Row(children: [
+          Container(
             height: 120,
             width: 95,
-            child: InkWell(
-              onTap: () {
-                // Navigator.of(context).push(MaterialPageRoute(
-                //   builder: (context) => MovieDetail(movies),
-                // ));
-              },
+            decoration: BoxDecoration(image: DecorationImage(image: NetworkImage(movieModel.posterPathUrl), fit: BoxFit.cover)),
+          ),
+          const SizedBox(width: 22),
+          Expanded(
+            child: SizedBox(
+              height: 120,
+              width: 95,
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -89,7 +81,7 @@ class ListMovie extends ConsumerWidget {
                     const SizedBox(height: 5),
                      Text(
                       'Average Rating:\n${ movieModel.voteAverage.toString()}',
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontFamily: 'Poppins',
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
@@ -98,21 +90,21 @@ class ListMovie extends ConsumerWidget {
                   ]),
             ),
           ),
-        ),
-        SizedBox(
-          height: 120,
-          width: 30,
-          child: Column(children: [
-            movieModel.adult == true
-                ? const Icon(Icons.bookmark, color: kPrimaryColor)
-                : const Icon(Icons.bookmark, color: kFouthColor),
-            const SizedBox(height: 19),
-            movieModel.adult == true
-                ? const Icon(Icons.star_outlined, color: kPrimaryColor)
-                : const Icon(Icons.star_outlined, color: kFouthColor)
-          ]),
-        ),
-      ]),
+          SizedBox(
+            height: 120,
+            width: 30,
+            child: Column(children: [
+              movieModel.adult == true
+                  ? const Icon(Icons.bookmark, color: kPrimaryColor)
+                  : const Icon(Icons.bookmark, color: kFouthColor),
+              const SizedBox(height: 19),
+              movieModel.adult == true
+                  ? const Icon(Icons.star_outlined, color: kPrimaryColor)
+                  : const Icon(Icons.star_outlined, color: kFouthColor)
+            ]),
+          ),
+        ]),
+      ),
     );
   }
 }
