@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fugi_movie_app_team6/constant/colors.dart';
 import 'dashboard.dart';
+import 'list_movie.dart';
 
 /// ini coba watch list
 class Home extends StatefulWidget {
@@ -12,6 +13,15 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   TabController? _tabController;
   int? isCategories;
+  TextEditingController searchControlller = TextEditingController();
+  String searchMovie = '';
+
+  void resetSearch() {
+    setState(() {
+    });
+    searchControlller.clear();
+  }
+
   @override
   void initState() {
     super.initState();
@@ -76,16 +86,20 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                               children: [
                                 Container(
                                   width: width - 123,
-                                  child: const Padding(
+                                  child: Padding(
                                     padding:
-                                        EdgeInsets.only(left: 20, right: 20),
+                                        const EdgeInsets.only(left: 20, right: 20),
                                     child: TextField(
-                                      decoration: InputDecoration(
+                                      controller: searchControlller,
+                                      onChanged: (value) {
+                                        searchMovie = value;
+                                      },
+                                      decoration: const InputDecoration(
                                           hintText: 'Search Here ...',
                                           border: InputBorder.none,
                                           hintStyle:
                                               TextStyle(color: kFouthColor)),
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontFamily: 'Poppins',
                                           color: Colors.white,
                                           fontSize: 14,
@@ -101,7 +115,13 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                 Container(
                                   width: 42,
                                   child: IconButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        resetSearch();
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (context) => ListMovie(
+                                                    title: searchMovie)));
+                                      },
                                       icon: const Icon(
                                         Icons.search,
                                         color: kFouthColor,
