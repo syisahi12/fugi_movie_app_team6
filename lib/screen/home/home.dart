@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fugi_movie_app_team6/constant/colors.dart';
-import 'dashboard.dart';
-import 'list_movie.dart';
+import 'package:fugi_movie_app_team6/screen/home/widgets/categories.dart';
+import '../dashboard.dart';
+import '../list_movie.dart';
 
 /// ini coba watch list
 class Home extends StatefulWidget {
@@ -17,8 +18,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   String searchMovie = '';
 
   void resetSearch() {
-    setState(() {
-    });
+    setState(() {});
     searchControlller.clear();
   }
 
@@ -27,6 +27,11 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     super.initState();
     isCategories = 0;
     _tabController = TabController(length: 4, vsync: this);
+    _tabController!.addListener(() {
+      setState(() {
+        isCategories = _tabController!.index;
+      });
+    });
   }
 
   @override
@@ -87,8 +92,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                 Container(
                                   width: width - 123,
                                   child: Padding(
-                                    padding:
-                                        const EdgeInsets.only(left: 20, right: 20),
+                                    padding: const EdgeInsets.only(
+                                        left: 20, right: 20),
                                     child: TextField(
                                       controller: searchControlller,
                                       onChanged: (value) {
@@ -116,11 +121,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                   width: 42,
                                   child: IconButton(
                                       onPressed: () {
-                                        if(searchMovie.isNotEmpty) {
+                                        if (searchMovie.isNotEmpty) {
                                           Navigator.of(context).push(
                                               MaterialPageRoute(
-                                                  builder: (context) => ListMovie(
-                                                      title: searchMovie)));
+                                                  builder: (context) =>
+                                                      ListMovie(
+                                                          title: searchMovie)));
                                           resetSearch();
                                         }
                                       },
@@ -164,94 +170,22 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     isScrollable: true,
                     indicatorColor: Colors.transparent,
                     tabs: [
-                      Tab(
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(16),
-                          child: Container(
-                            height: 32,
-                            color: _tabController!.index == 0
-                                ? kPrimaryColor
-                                : kSecondaryColor,
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(22, 7, 22, 7),
-                              child: Text(
-                                'Top Rated',
-                                style: _tabController!.index == 0
-                                    ? const TextStyle(
-                                        color: kBackground, fontSize: 12)
-                                    : const TextStyle(
-                                        color: kFouthColor, fontSize: 12),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Tab(
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(16),
-                          child: Container(
-                            height: 32,
-                            color: _tabController!.index == 1
-                                ? kPrimaryColor
-                                : kSecondaryColor,
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(22, 7, 22, 7),
-                              child: Text(
-                                'Popular',
-                                style: _tabController!.index == 1
-                                    ? const TextStyle(
-                                        color: kBackground, fontSize: 12)
-                                    : const TextStyle(
-                                        color: kFouthColor, fontSize: 12),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Tab(
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(16),
-                          child: Container(
-                            height: 32,
-                            color: _tabController!.index == 2
-                                ? kPrimaryColor
-                                : kSecondaryColor,
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(22, 7, 22, 7),
-                              child: Text(
-                                'Action',
-                                style: _tabController!.index == 2
-                                    ? const TextStyle(
-                                        color: kBackground, fontSize: 12)
-                                    : const TextStyle(
-                                        color: kFouthColor, fontSize: 12),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Tab(
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(16),
-                          child: Container(
-                            height: 32,
-                            color: _tabController!.index == 3
-                                ? kPrimaryColor
-                                : kSecondaryColor,
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(22, 7, 22, 7),
-                              child: Text(
-                                'Action',
-                                style: _tabController!.index == 3
-                                    ? const TextStyle(
-                                        color: kBackground, fontSize: 12)
-                                    : const TextStyle(
-                                        color: kFouthColor, fontSize: 12),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
+                      TitleCategories(
+                          title: 'Latest',
+                          tabController: _tabController,
+                          nomor: 0),
+                      TitleCategories(
+                          title: 'Popular',
+                          tabController: _tabController,
+                          nomor: 1),
+                      TitleCategories(
+                          title: 'Action',
+                          tabController: _tabController,
+                          nomor: 2),
+                      TitleCategories(
+                          title: 'Action',
+                          tabController: _tabController,
+                          nomor: 3),
                     ],
                   ),
                   const SizedBox(height: 31),
