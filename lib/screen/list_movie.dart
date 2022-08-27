@@ -40,7 +40,6 @@ class ListMovie extends ConsumerWidget {
   }
 
   Widget _buildCard(MovieModel movieModel, context) {
-    double width = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.only(top: 18, bottom: 9),
       child: InkWell(
