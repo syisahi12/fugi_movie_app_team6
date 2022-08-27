@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:fugi_movie_app_team6/constant/colors.dart';
 import 'package:fugi_movie_app_team6/screen/home/widgets/categories.dart';
+import 'package:fugi_movie_app_team6/screen/movie_categories.dart';
 import '../dashboard.dart';
 import '../list_movie.dart';
+import 'package:fugi_movie_app_team6/constant/movie_type.dart';
 
 /// ini coba watch list
 class Home extends StatefulWidget {
@@ -26,7 +28,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   void initState() {
     super.initState();
     isCategories = 0;
-    _tabController = TabController(length: 4, vsync: this);
+    _tabController = TabController(length: 5, vsync: this);
     _tabController!.addListener(() {
       setState(() {
         isCategories = _tabController!.index;
@@ -169,24 +171,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     controller: _tabController,
                     isScrollable: true,
                     indicatorColor: Colors.transparent,
-                    tabs: [
-                      TitleCategories(
-                          title: 'Latest',
-                          tabController: _tabController,
-                          nomor: 0),
-                      TitleCategories(
-                          title: 'Popular',
-                          tabController: _tabController,
-                          nomor: 1),
-                      TitleCategories(
-                          title: 'Action',
-                          tabController: _tabController,
-                          nomor: 2),
-                      TitleCategories(
-                          title: 'Action',
-                          tabController: _tabController,
-                          nomor: 3),
-                    ],
+                    tabs: MovieType.values
+                        .map((type) => TitleCategories(
+                            title: type.name,
+                            tabController: _tabController,
+                            nomor: type.id))
+                        .toList(),
                   ),
                   const SizedBox(height: 31),
                   Padding(
@@ -219,7 +209,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                         child: Row(
                           children: [
                             TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) =>
+                                        const MovieCategories(),
+                                  ));
+                                },
                                 child: const Text(
                                   'Load More',
                                   style: TextStyle(
