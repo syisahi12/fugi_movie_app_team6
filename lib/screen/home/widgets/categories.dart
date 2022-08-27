@@ -1,7 +1,4 @@
-import 'dart:ffi';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:fugi_movie_app_team6/constant/colors.dart';
 
 class TitleCategories extends StatelessWidget {
