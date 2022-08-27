@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fugi_movie_app_team6/constant/colors.dart';
 import 'package:fugi_movie_app_team6/data/movies.dart';
-import 'package:fugi_movie_app_team6/screen/detail/widgets/buildBottom.dart';
+import 'package:fugi_movie_app_team6/screen/detail/widgets/build_bottom.dart';
 
 class MovieDetail extends StatefulWidget {
   final List reviewList = List.generate(5, (index) {
