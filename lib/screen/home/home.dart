@@ -210,10 +210,10 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                           children: [
                             TextButton(
                                 onPressed: () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) =>
-                                        const MovieCategories(),
-                                  ));
+                                  // Navigator.of(context).push(MaterialPageRoute(
+                                  //   builder: (context) =>
+                                  //       const MovieCategories(),
+                                  // ));
                                 },
                                 child: const Text(
                                   'Load More',
