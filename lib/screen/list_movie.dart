@@ -21,14 +21,12 @@ class ListMovie extends ConsumerWidget {
       ),
       body: _data.when(
         data: (_data) {
-          return ListView(
+          return ListView.builder(
             shrinkWrap: true,
-            children: [
-              ..._data.map((e) => ListView(
-                shrinkWrap: true,
-                children: [_buildCard(e, context)],
-              ))
-            ],
+            itemBuilder: (context, index) {
+              return _buildCard(_data[index], context);
+            },
+            itemCount: _data.length,
           );
         },
         error: (err, s) => Text(err.toString()),
@@ -43,14 +41,15 @@ class ListMovie extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 18, bottom: 9),
       child: InkWell(
-        onTap: () {
-
-        },
+        onTap: () {},
         child: Row(children: [
           Container(
             height: 120,
             width: 95,
-            decoration: BoxDecoration(image: DecorationImage(image: NetworkImage(movieModel.posterPathUrl), fit: BoxFit.cover)),
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: NetworkImage(movieModel.posterPathUrl),
+                    fit: BoxFit.cover)),
           ),
           const SizedBox(width: 22),
           Expanded(
@@ -70,7 +69,7 @@ class ListMovie extends ConsumerWidget {
                     ),
                     const SizedBox(height: 5),
                     Text(
-                      'Release Date:\n${ movieModel.releaseDate}',
+                      'Release Date:\n${movieModel.releaseDate}',
                       style: const TextStyle(
                           fontFamily: 'Poppins',
                           fontSize: 12,
@@ -78,8 +77,8 @@ class ListMovie extends ConsumerWidget {
                           color: kFouthColor),
                     ),
                     const SizedBox(height: 5),
-                     Text(
-                      'Average Rating:\n${ movieModel.voteAverage.toString()}',
+                    Text(
+                      'Average Rating:\n${movieModel.voteAverage.toString()}',
                       style: const TextStyle(
                           fontFamily: 'Poppins',
                           fontSize: 12,
