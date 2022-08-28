@@ -1,10 +1,8 @@
-enum MovieType { latest, now_playing, popular, top_rated, upcoming }
+enum MovieType {now_playing, popular, top_rated, upcoming}
 
 extension MovieTypeExtention on MovieType {
   String get name {
     switch (this) {
-      case MovieType.latest:
-        return 'Latest';
       case MovieType.now_playing:
         return 'Now Playing';
       case MovieType.popular:
@@ -14,22 +12,20 @@ extension MovieTypeExtention on MovieType {
       case MovieType.upcoming:
         return 'Upcoming';
       default:
-        return 'Unknown';
+        return 'Now Playing';
     }
   }
 
   int get id {
     switch (this) {
-      case MovieType.latest:
-        return 0;
       case MovieType.now_playing:
-        return 1;
+        return 0;
       case MovieType.popular:
-        return 2;
+        return 1;
       case MovieType.top_rated:
-        return 3;
+        return 2;
       case MovieType.upcoming:
-        return 4;
+        return 3;
       default:
         return 0;
     }
