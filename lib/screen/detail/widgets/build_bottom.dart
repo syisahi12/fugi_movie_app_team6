@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:fugi_movie_app_team6/constant/colors.dart';
 
 class BuildBottom extends StatefulWidget {
-  const BuildBottom({Key? key}) : super(key: key);
-
+  bool ini = false;
+  BuildBottom({Key? key, required this.ini}) : super(key: key);
   @override
-  State<BuildBottom> createState() => _BuildBottomState();
+  State<BuildBottom> createState() => _BuildBottomState(onWatchlist: ini);
 }
 
 class _BuildBottomState extends State<BuildBottom> {
+  bool onWatchlist = false;
+  _BuildBottomState({required this.onWatchlist});
   bool click = false;
   @override
   Widget build(BuildContext context) {
@@ -50,22 +52,25 @@ class _BuildBottomState extends State<BuildBottom> {
             ),
           ),
           const Spacer(),
-          GestureDetector(
-            onTap: () {
-              setState(() {
-                click = !click;
-              });
-            },
-            child: Container(
-              height: 42,
-              width: 42,
-              decoration: BoxDecoration(
-                  color: kSecondaryColor,
-                  borderRadius: BorderRadius.circular(20)),
-              child: Center(
-                child: Icon(
-                  click ? Icons.bookmark : Icons.bookmark_add,
-                  color: click ? kPrimaryColor : Colors.white,
+          Visibility(
+            visible: !onWatchlist,
+            child: GestureDetector(
+              onTap: () {
+                setState(() {
+                  click = !click;
+                });
+              },
+              child: Container(
+                height: 42,
+                width: 42,
+                decoration: BoxDecoration(
+                    color: kSecondaryColor,
+                    borderRadius: BorderRadius.circular(20)),
+                child: Center(
+                  child: Icon(
+                    click ? Icons.bookmark : Icons.bookmark_add,
+                    color: click ? kPrimaryColor : Colors.white,
+                  ),
                 ),
               ),
             ),

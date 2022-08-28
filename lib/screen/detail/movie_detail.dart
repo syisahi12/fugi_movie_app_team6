@@ -106,7 +106,7 @@ class _MovieDetailState extends State<MovieDetail>
               ),
             ),
             const Spacer(),
-            const BuildBottom(),
+            BuildBottom(ini: false),
           ],
         ));
   }
