@@ -28,7 +28,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   void initState() {
     super.initState();
     isCategories = 0;
-    _tabController = TabController(length: 5, vsync: this);
+    _tabController = TabController(length: MovieType.values.length, vsync: this);
     _tabController!.addListener(() {
       setState(() {
         isCategories = _tabController!.index;
