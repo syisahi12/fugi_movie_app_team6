@@ -9,7 +9,7 @@ class MovieModel {
   final String originalLanguage;
   final String originalTitle;
   final String overview;
-  final String popularity;
+  // final String popularity;
   final String posterPath;
   final String releaseDate;
   final String title;
@@ -25,7 +25,7 @@ class MovieModel {
     required this.originalLanguage,
     required this.originalTitle,
     required this.overview,
-    required this.popularity,
+    // required this.popularity,
     required this.posterPath,
     required this.releaseDate,
     required this.title,
@@ -47,7 +47,7 @@ class MovieModel {
       originalLanguage: json['original_language'] ?? '',
       originalTitle: json['original_title'] ?? '',
       overview: json['overview'] ?? '',
-      popularity: json['popularity'] ?? '',
+      // popularity: json['popularity'] ?? '',
       posterPath: json['poster_path'] ?? '',
       releaseDate: json['release_date'] ?? '',
       title: json['title'] ?? '',
