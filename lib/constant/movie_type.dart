@@ -16,6 +16,21 @@ extension MovieTypeExtention on MovieType {
     }
   }
 
+  String get nameType {
+    switch (this) {
+      case MovieType.now_playing:
+        return 'now_playing';
+      case MovieType.popular:
+        return 'popular';
+      case MovieType.top_rated:
+        return 'top_rated';
+      case MovieType.upcoming:
+        return 'upcoming';
+      default:
+        return 'now_playing';
+    }
+  }
+
   int get id {
     switch (this) {
       case MovieType.now_playing:
