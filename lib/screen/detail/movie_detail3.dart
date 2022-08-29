@@ -6,6 +6,16 @@ import 'package:fugi_movie_app_team6/provider/movie_detail_provider.dart';
 import 'package:fugi_movie_app_team6/screen/detail/widgets/build_bottom.dart';
 
 class MovieDetail3 extends StatefulWidget {
+  final List reviewList = List.generate(5, (index) {
+    return {
+      "id": index,
+      "image": "",
+      "rating": "69",
+      "reviewers": "Iqbal Shafiq Rozaan ",
+      "message":
+          "From DC Comics comes the Suicide Squad, an antihero team of incarcerated supervillains who act as deniable assets for the United States government. "
+    };
+  });
   final MovieModel movies;
   MovieDetail3(this.movies, {Key? key}) : super(key: key);
 
@@ -17,6 +27,8 @@ class _MovieDetail3State extends State<MovieDetail3>
     with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
+    TabController _tabController =
+        TabController(length: myTab.length, vsync: this);
     return Scaffold(
       backgroundColor: kBackground,
       appBar: AppBar(
@@ -142,4 +154,13 @@ class _MovieDetail3State extends State<MovieDetail3>
       ),
     );
   }
+
+  List<Tab> myTab = [
+    const Tab(
+      text: 'About Movie',
+    ),
+    const Tab(
+      text: 'Review',
+    ),
+  ];
 }

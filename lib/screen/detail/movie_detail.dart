@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fugi_movie_app_team6/constant/colors.dart';
 import 'package:fugi_movie_app_team6/data/movies.dart';
+import 'package:fugi_movie_app_team6/models/movie_model.dart';
+import 'package:fugi_movie_app_team6/provider/movie_detail_provider.dart';
 import 'package:fugi_movie_app_team6/screen/detail/widgets/build_bottom.dart';
 
 class MovieDetail extends StatefulWidget {
@@ -14,7 +17,7 @@ class MovieDetail extends StatefulWidget {
           "From DC Comics comes the Suicide Squad, an antihero team of incarcerated supervillains who act as deniable assets for the United States government. "
     };
   });
-  final Movies movies;
+  final MovieModel movies;
   MovieDetail(this.movies, {Key? key}) : super(key: key);
 
   @override
@@ -29,90 +32,117 @@ class _MovieDetailState extends State<MovieDetail>
         TabController(length: myTab.length, vsync: this);
     return Scaffold(
         backgroundColor: kBackground,
-        body: Column(
-          children: [
-            Container(
-              margin: const EdgeInsets.only(bottom: 75),
-              child: buildHeader(context),
-            ),
-            SizedBox(
-                height: 50,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20, right: 12),
-                  child: categoryList(context),
-                )),
-            SizedBox(
-              height: 50,
-              child: TabBar(
-                controller: _tabController,
-                tabs: myTab,
-                indicatorColor: kSecondaryColor,
-                indicatorWeight: 5,
+        body: Consumer(
+          builder: (BuildContext context, WidgetRef ref, Widget? child) {
+            final responseAsyncValue = ref.watch(
+              movieDetailProvide(
+                widget.movies.id.toString(),
               ),
-            ),
-            SizedBox(
-              height: 350,
-              child: TabBarView(
-                controller: _tabController,
+            );
+            return responseAsyncValue.map(
+              data: (_) => Column(
                 children: [
-                  ///detail movie
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      left: 20,
-                    ),
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          detailMovie(context),
-                        ]),
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 75),
+                    child: buildHeader(
+                        _.asData!.value.first.title!,
+                        _.asData!.value.first.posterPathUrl,
+                        _.asData!.value.first.backdropPathUrl,
+                        context),
                   ),
-
-                  ///revies movie
-                  ListView.builder(
-                      itemBuilder: (context, index) => Container(
-                            color: kBackground,
-                            // elevation: 6,
-                            margin: const EdgeInsets.all(10),
-                            child: ListTile(
-                              leading: CircleAvatar(
-                                backgroundColor: Colors.amber,
-                                child: Text(widget.reviewList[index]["rating"]),
-                              ),
-                              title: Text(
-                                widget.reviewList[index]["reviewers"],
-                                style: const TextStyle(
-                                    fontFamily: 'Poppins',
-                                    color: kThirdColor,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w600),
-                                maxLines: 5,
-                              ),
-                              subtitle: Text(
-                                widget.reviewList[index]["message"],
-                                style: const TextStyle(
-                                    fontFamily: 'Poppins',
-                                    color: kThirdColor,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w400),
-                                maxLines: 5,
-                              ),
-                            ),
+                  SizedBox(
+                      height: 50,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 20, right: 12),
+                        child: categoryList(context),
+                      )),
+                  SizedBox(
+                    height: 50,
+                    child: TabBar(
+                      controller: _tabController,
+                      tabs: myTab,
+                      indicatorColor: kSecondaryColor,
+                      indicatorWeight: 5,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 350,
+                    child: TabBarView(
+                      controller: _tabController,
+                      children: [
+                        ///detail movie
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            left: 20,
                           ),
-                      itemCount: widget.reviewList.length),
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                detailMovie(
+                                    _.asData!.value.first.overview!,
+                                    _.asData!.value.first.releaseDate!,
+                                    _.asData!.value.first.voteAverage!,
+                                    _.asData!.value.first.voteCount!,
+                                    _.asData!.value.first.popularity!,
+                                    context),
+                              ]),
+                        ),
+
+                        ///revies movie
+                        ListView.builder(
+                            itemBuilder: (context, index) => Container(
+                                  color: kBackground,
+                                  // elevation: 6,
+                                  margin: const EdgeInsets.all(10),
+                                  child: ListTile(
+                                    leading: CircleAvatar(
+                                      backgroundColor: Colors.amber,
+                                      child: Text(
+                                          widget.reviewList[index]["rating"]),
+                                    ),
+                                    title: Text(
+                                      widget.reviewList[index]["reviewers"],
+                                      style: const TextStyle(
+                                          fontFamily: 'Poppins',
+                                          color: kThirdColor,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w600),
+                                      maxLines: 5,
+                                    ),
+                                    subtitle: Text(
+                                      widget.reviewList[index]["message"],
+                                      style: const TextStyle(
+                                          fontFamily: 'Poppins',
+                                          color: kThirdColor,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w400),
+                                      maxLines: 5,
+                                    ),
+                                  ),
+                                ),
+                            itemCount: widget.reviewList.length),
+                      ],
+                    ),
+                  ),
+                  const Spacer(),
+                  BuildBottom(ini: false),
                 ],
               ),
-            ),
-            const Spacer(),
-            BuildBottom(ini: false),
-          ],
+              error: (_) => const Text("Error"),
+              loading: (_) => const Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
+          },
         ));
   }
 }
 
-Widget buildHeader(BuildContext context) {
+Widget buildHeader(String title, String posterPathUrl, String backdropPathUrl,
+    BuildContext context) {
   return Stack(
     clipBehavior: Clip.none,
     children: [
@@ -124,10 +154,10 @@ Widget buildHeader(BuildContext context) {
       Container(
         height: 210,
         width: MediaQuery.of(context).size.width,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(
-              'assets/images/spiderman_banner.png',
+            image: NetworkImage(
+              backdropPathUrl,
             ),
             fit: BoxFit.cover,
           ),
@@ -135,14 +165,17 @@ Widget buildHeader(BuildContext context) {
       ),
       Positioned(
         left: 20,
-        top: 160,
-        child: Image.asset('assets/images/spiderman.png'),
+        top: 130,
+        child: Image.network(
+          posterPathUrl,
+          height: 150,
+        ),
       ),
-      const Positioned(
+      Positioned(
         left: 130,
         top: 220,
         child: Text(
-          "Spiderman No Way \nHome",
+          title,
           style: TextStyle(
               fontFamily: 'Poppins',
               fontSize: 18,
@@ -160,7 +193,8 @@ Widget buildTabBar(BuildContext context) {
   );
 }
 
-Widget detailMovie(BuildContext context) {
+Widget detailMovie(String overview, String releaseDate, double ratings,
+    int rate, double popularity, BuildContext context) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -176,8 +210,8 @@ Widget detailMovie(BuildContext context) {
       const SizedBox(
         height: 5,
       ),
-      const Text(
-        "From DC Comics comes the Suicide Squad, an antihero team of incarcerated supervillains who act as deniable assets for the United States government, undertaking high-risk black ops missions in exchange for commuted prison sentences.",
+      Text(
+        overview,
         style: TextStyle(
             fontFamily: 'Poppins',
             color: kThirdColor,
@@ -200,8 +234,8 @@ Widget detailMovie(BuildContext context) {
       const SizedBox(
         height: 5,
       ),
-      const Text(
-        "2019-08-03",
+      Text(
+        releaseDate,
         style: TextStyle(
             fontFamily: 'Poppins',
             color: kThirdColor,
@@ -216,7 +250,7 @@ Widget detailMovie(BuildContext context) {
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
+            children: [
               Text(
                 "Average rating",
                 style: TextStyle(
@@ -230,7 +264,7 @@ Widget detailMovie(BuildContext context) {
                 height: 5,
               ),
               Text(
-                "9.6",
+                ratings.toStringAsFixed(1),
                 style: TextStyle(
                     fontFamily: 'Poppins',
                     color: kThirdColor,
@@ -244,7 +278,7 @@ Widget detailMovie(BuildContext context) {
             width: 150,
           ),
           Column(
-            children: const [
+            children: [
               Text(
                 "Rate Count",
                 style: TextStyle(
@@ -258,7 +292,7 @@ Widget detailMovie(BuildContext context) {
                 height: 5,
               ),
               Text(
-                "1466",
+                rate.toString(),
                 style: TextStyle(
                     fontFamily: 'Poppins',
                     color: kThirdColor,
@@ -285,8 +319,8 @@ Widget detailMovie(BuildContext context) {
       const SizedBox(
         height: 5,
       ),
-      const Text(
-        "48.261451",
+      Text(
+        popularity.toString(),
         style: TextStyle(
             fontFamily: 'Poppins',
             color: kThirdColor,

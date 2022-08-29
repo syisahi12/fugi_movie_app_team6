@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:fugi_movie_app_team6/constant/colors.dart';
 import 'package:fugi_movie_app_team6/screen/home/widgets/categories.dart';
 import 'package:fugi_movie_app_team6/screen/splash.dart';
-import 'package:fugi_movie_app_team6/screen/watchlist.dart';
 import 'package:fugi_movie_app_team6/screen/list_movie_categories.dart';
+import 'package:fugi_movie_app_team6/screen/watchlist.dart';
 import '../list_movie.dart';
 import 'package:fugi_movie_app_team6/constant/movie_type.dart';
 
@@ -25,13 +25,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     searchControlller.clear();
   }
 
-
-
   @override
   void initState() {
     super.initState();
     isCategories = 0;
-    _tabController = TabController(length: MovieType.values.length, vsync: this);
+    _tabController =
+        TabController(length: MovieType.values.length, vsync: this);
     _tabController!.addListener(() {
       setState(() {
         isCategories = _tabController!.index;
@@ -228,10 +227,11 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                             const Spacer(),
                             InkWell(
                               onTap: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) =>
-                                        const Watchlist(),
-                                  ));
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Watchlist()),
+                                );
                               },
                               child: Container(
                                 height: 42,

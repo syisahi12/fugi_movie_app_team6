@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fugi_movie_app_team6/constant/colors.dart';
 import 'package:fugi_movie_app_team6/models/movie_model.dart';
+import 'package:fugi_movie_app_team6/screen/detail/movie_detail.dart';
 
 import '../provider/movie_provider.dart';
 
@@ -41,7 +42,10 @@ class ListMovie extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 18, bottom: 9),
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => MovieDetail(movieModel)));
+        },
         child: Row(children: [
           Container(
             height: 120,

@@ -62,11 +62,7 @@ class Watchlist extends StatelessWidget {
           height: 120,
           width: 95,
           child: InkWell(
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => MovieDetail(movies),
-              ));
-            },
+            onTap: () {},
             child: Image.asset(movies.imageUrl, fit: BoxFit.cover),
           ),
         ),
@@ -76,11 +72,7 @@ class Watchlist extends StatelessWidget {
             height: 120,
             width: 95,
             child: InkWell(
-              onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => MovieDetail(movies),
-                ));
-              },
+              onTap: () {},
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
