@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fugi_movie_app_team6/constant/colors.dart';
 import 'package:fugi_movie_app_team6/screen/home/widgets/categories.dart';
+import 'package:fugi_movie_app_team6/screen/splash.dart';
 import 'package:fugi_movie_app_team6/screen/watchlist.dart';
 import 'package:fugi_movie_app_team6/screen/list_movie_categories.dart';
 import '../list_movie.dart';
@@ -213,7 +214,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                 onPressed: () {
                                   // Navigator.of(context).push(MaterialPageRoute(
                                   //   builder: (context) =>
-                                  //       const Watchlist(),
+                                  //      Splash(),
                                   // ));
                                 },
                                 child: const Text(

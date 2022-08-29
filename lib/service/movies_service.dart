@@ -41,4 +41,20 @@ Future<List<MovieModel>> searchCategories(String movieType) async {
   }
 }
 
+// https://api.themoviedb.org/3/movie/19404?api_key=ebd2cdfaaa90ae5ce496bc143d03cdc4&language=en-US
+Future<List<MovieModel>> searchMovieDetail(String idMovie) async {
+  final String search = urlCategories + 'movie/'+idMovie +'?api_key=${Config.apiKey}'
+      '&language=en-US&page=1';
+  final response = await get(Uri.parse(search));
+  if (response.statusCode == 200) {
+    final List result = jsonDecode(response.body);
+    debugPrint('RESULT ' + result.toString());
+    return result.map(((e) => MovieModel.fromJson(e))).toList();
+  } else {
+    debugPrint('response ${response.reasonPhrase}');
+    throw Exception(response.reasonPhrase);
+  }
+}
+
+
 }

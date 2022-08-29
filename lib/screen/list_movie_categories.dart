@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fugi_movie_app_team6/constant/colors.dart';
 import 'package:fugi_movie_app_team6/models/movie_model.dart';
+import 'package:fugi_movie_app_team6/screen/movie_detail3.dart';
 
 import '../provider/categories_movie_provider.dart';
 
@@ -38,7 +39,9 @@ class ListMovieCategories extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 18, bottom: 9),
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => MovieDetail3(movieModel)));
+        },
         child: Row(children: [
           Container(
             height: 120,
@@ -57,7 +60,7 @@ class ListMovieCategories extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Title:\n${movieModel.title}',
+                      'Title:\n${movieModel.title}${movieModel.id}',
                       style: const TextStyle(
                           overflow: TextOverflow.ellipsis,
                           fontFamily: 'Poppins',
