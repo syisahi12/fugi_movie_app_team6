@@ -44,20 +44,14 @@ class _SplashState extends State<Splash> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                    height: 123,
-                    width: 137,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage('assets/images/splash.png'), fit: BoxFit.cover)),),
-              ],
+          children: const [
+            Icon(
+              Icons.video_library_rounded,
+              size: 150,
+              color: Colors.white,
             ),
-            const SizedBox(height: 30),
-            const CircularProgressIndicator(
+            SizedBox(height: 30),
+            CircularProgressIndicator(
               valueColor: AlwaysStoppedAnimation<Color>(kFouthColor),
             ),
           ],
