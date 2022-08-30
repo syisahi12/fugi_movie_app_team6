@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fugi_movie_app_team6/constant/colors.dart';
-import 'package:fugi_movie_app_team6/models/movie_model.dart';
 import 'package:fugi_movie_app_team6/screen/detail/movie_detail.dart';
 
 import '../provider/categories_movie_provider.dart';

@@ -56,7 +56,7 @@ class MovieDetailModel {
   });
 
   String get posterPathUrl => Utils.getImageUrl(posterPath);
-  String get backdropPathUrl => Utils.getImageUrl(backdropPath!, 1280);
+  String get backdropPathUrl => Utils.getImageUrl(backdropPath!, 500);
 
   MovieDetailModel.fromJson(Map<String, dynamic> json)
       : adult = json['adult'] as bool?,

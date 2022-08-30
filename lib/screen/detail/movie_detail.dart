@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fugi_movie_app_team6/constant/colors.dart';
-import 'package:fugi_movie_app_team6/data/movies.dart';
 import 'package:fugi_movie_app_team6/models/movie_model.dart';
 import 'package:fugi_movie_app_team6/provider/movie_detail_provider.dart';
 import 'package:fugi_movie_app_team6/screen/detail/widgets/build_bottom.dart';
+import 'package:fugi_movie_app_team6/screen/home/widgets/categories.dart';
 
 class MovieDetail extends StatefulWidget {
   final List reviewList = List.generate(5, (index) {
@@ -50,13 +50,22 @@ class _MovieDetailState extends State<MovieDetail>
                         _.asData!.value.first.backdropPathUrl,
                         context),
                   ),
-                  SizedBox(
-                      height: 50,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 20, right: 12),
-                        child: categoryList(context),
-                      )),
-                  SizedBox(
+Expanded(
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: TitleCategories(
+                              title: _.asData!.value.first.genres![index].name ?? '',
+                              tabController: _tabController,
+                              nomor: _.asData!.value.first.genres![index].id ?? 0),
+                        );
+                      },
+                      itemCount: _.asData!.value.first.genres!.length,
+                    ),
+                  ),                  SizedBox(
                     height: 50,
                     child: TabBar(
                       controller: _tabController,
@@ -176,7 +185,7 @@ Widget buildHeader(String title, String posterPathUrl, String backdropPathUrl,
         top: 220,
         child: Text(
           title,
-          style: TextStyle(
+          style: const TextStyle(
               fontFamily: 'Poppins',
               fontSize: 18,
               fontWeight: FontWeight.w600,
@@ -212,7 +221,7 @@ Widget detailMovie(String overview, String releaseDate, double ratings,
       ),
       Text(
         overview,
-        style: TextStyle(
+        style: const TextStyle(
             fontFamily: 'Poppins',
             color: kThirdColor,
             fontSize: 12,
@@ -236,7 +245,7 @@ Widget detailMovie(String overview, String releaseDate, double ratings,
       ),
       Text(
         releaseDate,
-        style: TextStyle(
+        style: const TextStyle(
             fontFamily: 'Poppins',
             color: kThirdColor,
             fontSize: 12,
@@ -251,7 +260,7 @@ Widget detailMovie(String overview, String releaseDate, double ratings,
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 "Average rating",
                 style: TextStyle(
                     fontFamily: 'Poppins',
@@ -260,12 +269,12 @@ Widget detailMovie(String overview, String releaseDate, double ratings,
                     fontWeight: FontWeight.w600),
                 maxLines: 1,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               Text(
                 ratings.toStringAsFixed(1),
-                style: TextStyle(
+                style: const TextStyle(
                     fontFamily: 'Poppins',
                     color: kThirdColor,
                     fontSize: 12,
@@ -279,7 +288,7 @@ Widget detailMovie(String overview, String releaseDate, double ratings,
           ),
           Column(
             children: [
-              Text(
+              const Text(
                 "Rate Count",
                 style: TextStyle(
                     fontFamily: 'Poppins',
@@ -288,12 +297,12 @@ Widget detailMovie(String overview, String releaseDate, double ratings,
                     fontWeight: FontWeight.w600),
                 maxLines: 1,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               Text(
                 rate.toString(),
-                style: TextStyle(
+                style: const TextStyle(
                     fontFamily: 'Poppins',
                     color: kThirdColor,
                     fontSize: 12,
@@ -321,7 +330,7 @@ Widget detailMovie(String overview, String releaseDate, double ratings,
       ),
       Text(
         popularity.toString(),
-        style: TextStyle(
+        style: const TextStyle(
             fontFamily: 'Poppins',
             color: kThirdColor,
             fontSize: 12,
