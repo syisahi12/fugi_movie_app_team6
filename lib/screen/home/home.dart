@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fugi_movie_app_team6/constant/colors.dart';
 import 'package:fugi_movie_app_team6/screen/home/widgets/categories.dart';
-import 'package:fugi_movie_app_team6/screen/splash.dart';
 import 'package:fugi_movie_app_team6/screen/list_movie_categories.dart';
 import 'package:fugi_movie_app_team6/screen/watchlist.dart';
 import '../list_movie.dart';

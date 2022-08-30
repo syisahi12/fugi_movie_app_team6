@@ -47,7 +47,7 @@ class ListMovieCategories extends ConsumerWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Title:\n${_data[index].title}${_data[index].id}',
+                                'Title:\n${_data[index].title}',
                                 style: const TextStyle(
                                     overflow: TextOverflow.ellipsis,
                                     fontFamily: 'Poppins',
