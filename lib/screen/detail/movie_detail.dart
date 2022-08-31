@@ -50,7 +50,7 @@ class _MovieDetailState extends State<MovieDetail>
                         _.asData!.value.first.backdropPathUrl,
                         context),
                   ),
-Expanded(
+                  Expanded(
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       shrinkWrap: true,
@@ -58,14 +58,18 @@ Expanded(
                         return Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: TitleCategories(
-                              title: _.asData!.value.first.genres![index].name ?? '',
+                              title:
+                                  _.asData!.value.first.genres![index].name ??
+                                      '',
                               tabController: _tabController,
-                              nomor: _.asData!.value.first.genres![index].id ?? 0),
+                              nomor:
+                                  _.asData!.value.first.genres![index].id ?? 0),
                         );
                       },
                       itemCount: _.asData!.value.first.genres!.length,
                     ),
-                  ),                  SizedBox(
+                  ),
+                  SizedBox(
                     height: 50,
                     child: TabBar(
                       controller: _tabController,

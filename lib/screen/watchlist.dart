@@ -47,8 +47,11 @@ class Watchlist extends StatelessWidget {
                 itemCount: listMovies.length,
               ),
             ),
-            BuildBottom(
-              ini: true,
+            Container(
+              margin: EdgeInsets.only(top: 35),
+              child: BuildBottom(
+                ini: true,
+              ),
             ), // const Spacer(),
           ],
         ));
