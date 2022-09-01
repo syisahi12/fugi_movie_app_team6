@@ -1,7 +1,13 @@
 # DB MOVIE  APP
 ## TEAM 6 FUGI 
 
-![Gambar teks editor VS Code](https://take-me-to.space/0XC9jXh.png)
+![Screenshot DB Movie](https://take-me-to.space/0XC9jXh.png)
+
+
+## Download Here!
+[![Download Here](https://icons.iconarchive.com/icons/dtafalonso/android-lollipop/72/Downloads-icon.png)](https://take-me-to.space/yeqHpNa.apk)
+
+
 
 MovieDB adalah aplikasi untuk mencari film yang sedang trending atau baru rilis
 
